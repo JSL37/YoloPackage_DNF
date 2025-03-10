@@ -191,33 +191,3 @@ class KMController:
             dy (int): Y方向移动距离
         """
         kmNet.enc_rel(dx, dy)
-
-    def type_string(self, text, delay=0.05):
-        """输入字符串
-
-        Args:
-            text (str): 要输入的文本
-            delay (float, optional): 按键间延迟(秒). 默认0.05秒.
-        """
-        key_map = {
-            'a': self.KEY_A, 'b': self.KEY_B, 'c': self.KEY_C, 'd': self.KEY_D,
-            'e': self.KEY_E, 'f': self.KEY_F, 'g': self.KEY_G, 'i': self.KEY_I,
-            'j': self.KEY_J, 'k': self.KEY_K, 'm': self.KEY_M, 'n': self.KEY_N,
-            'o': self.KEY_O, 'q': self.KEY_Q, 'r': self.KEY_R, 's': self.KEY_S,
-            't': self.KEY_T, 'u': self.KEY_U, 'v': self.KEY_V, 'w': self.KEY_W,
-            'x': self.KEY_X, 'y': self.KEY_Y, 'z': self.KEY_Z,
-            '0': self.KEY_0, '2': self.KEY_2, '3': self.KEY_3, '4': self.KEY_4,
-            '5': self.KEY_5, '6': self.KEY_6, '7': self.KEY_7, '9': self.KEY_9,
-            ' ': self.KEY_SPACE, '.': self.KEY_DOT, '/': self.KEY_SLASH,
-            '[': self.KEY_BRACKET_LEFT, ']': self.KEY_BRACKET_RIGHT
-        }
-
-        for char in text:
-            if char.lower() in key_map:
-                if char.isupper():
-                    self.key_down(self.KEY_SHIFT)
-                    self.press_key(key_map[char.lower()])
-                    self.key_up(self.KEY_SHIFT)
-                else:
-                    self.press_key(key_map[char.lower()])
-                time.sleep(delay)
