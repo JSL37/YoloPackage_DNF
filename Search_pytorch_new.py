@@ -6,6 +6,19 @@ import cv2
 import numpy as np
 from ultralytics import YOLO
 
+class DetectionResult:
+    def __init__(self, max_size=10):
+        self.results = deque(maxlen=max_size)
+        self.lock = threading.Lock()
+    
+    def add_result(self, result):
+        with self.lock:
+            self.results.append(result)
+    
+    def get_results(self):
+        with self.lock:
+            return list(self.results)
+
 class RegionSelector:
     def __init__(self):
         self.drawing = False
